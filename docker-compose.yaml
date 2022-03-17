@@ -1,0 +1,26 @@
+services:
+  server-dev:
+    build:
+      context: .
+    image: ${SERVICE_NAME}-dev:latest
+    environment:
+      - NODE_ENV=dev_stand
+    env_file:
+      - .env
+    ports:
+      - ${PORT_DEV}:${PORT_DEV}
+    volumes:
+      - ./media-dev:/media
+
+  server-prod:
+    build:
+      context: .
+    image: ${SERVICE_NAME}-prod:latest
+    environment:
+      - NODE_ENV=prod_stand
+    env_file:
+      - .env
+    ports:
+      - ${PORT_PROD}:${PORT_PROD}
+    volumes:
+      - ./media-prod:/media

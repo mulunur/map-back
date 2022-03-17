@@ -1,0 +1,12 @@
+.idea
+.vscode
+.env
+
+.DS_Store
+
+dist
+node_modules
+test/coverage
+
+.env
+package-lock.json

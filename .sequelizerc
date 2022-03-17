@@ -1,0 +1,12 @@
+const path = require('path');
+
+const dotenv = require("dotenv");
+dotenv.config();
+const UtilsENVConfig = require("./dist/utils/utils-env-config");
+UtilsENVConfig.default.init();
+
+module.exports = {
+  'config': path.resolve('dist', 'database', 'config.js'),
+  'models-path': path.resolve('dist', 'database', 'models'),
+  'migrations-path': path.resolve('dist', 'database', 'migrations')
+};

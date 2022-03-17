@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSGRES_USER=postgres
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile-jest
+    image: server-jest:latest
+    volumes:
+      - ./src:/app/src
+      - ./test:/app/test
+    environment:
+      - WAIT_HOSTS=postgres:5432
+    depends_on:
+      - postgres

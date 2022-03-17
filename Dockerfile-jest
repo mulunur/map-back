@@ -1,0 +1,19 @@
+FROM node:14.18.2-alpine
+
+WORKDIR /app
+
+RUN apk update && apk add bash
+
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
+RUN chmod +x /wait
+
+COPY package.json ./
+COPY yarn.lock ./
+COPY jest.config.js jest.config.js
+
+# Установка зависимостей
+RUN yarn install --frozen-lockfile
+
+COPY tsconfig.json tsconfig.json
+
+CMD /wait && bash ./test/init.sh
